@@ -1,31 +1,34 @@
-# Base de Datos con postgres
+#spring.datasource.url=jdbc:postgresql://dpg-cjhshp5mrchc73asugh0-a.frankfurt-postgres.render.com/bankms
+#spring.datasource.username=bankms_user
+#spring.datasource.password=HL3l7cd9fmAVsPYhUzO9hq0jUjxuOg7R
 
 server:
-    port: 8080
-    tomcat: 
+    tomcat:
         accesslog:
             enabled: true
+
 spring:
     application:
-        name: lucas-backend
+        name: bank-management-system
+    port: 8002
     datasource:
-        url: jdbc:sqlserver://localhost:1433;database=bank;encrypt=true;trustServerCertificate=true;
-        username: sa
-        password: 1234Banco
-        driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+        url: jdbc:postgresql://localhost:5432/bank-management-system
+        username: postgres
+        password: sasa
+        driver-class-name: org.postgresql.Driver
     jpa:
-        hibernate:
-            ddl-auto: update
-        database-platform: org.hibernate.dialect.SQLServer2012Dialect
         show-sql: true
-        open-in-view: false
         properties:
             hibernate:
-                format-sql: true
+                format_sql: true
                 dialect: org.hibernate.dialect.PostgreSQLDialect
                 jdbc:
                     lob:
-                        non-contextual-creation: true
+                        non_contextual_creation: true
+        hibernate:
+            ddl-auto: update
+
+
 
 # Flyway
 
