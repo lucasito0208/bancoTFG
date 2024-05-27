@@ -3,6 +3,7 @@ DROP TABLE cuenta;
 DROP TABLE usuario;
 
 
+
 CREATE TABLE cuenta (
     id SERIAL PRIMARY KEY,
     num_tarjeta VARCHAR(255) NOT NULL UNIQUE,

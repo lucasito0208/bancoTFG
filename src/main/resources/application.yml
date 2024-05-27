@@ -8,13 +8,16 @@ server:
             enabled: true
 
 spring:
+    mvc:
+        pathmatch:
+            matching-strategy: ant-path-matcher
     application:
         name: bank-management-system
     port: 8002
     datasource:
         url: jdbc:postgresql://localhost:5432/bank-management-system
         username: postgres
-        password: sasa
+        password: admin
         driver-class-name: org.postgresql.Driver
     jpa:
         show-sql: true

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/usuario")
+@RequestMapping("/api/usuario")
 public class UsuarioControllerImpl implements UsuarioController{
 
     private final UsuarioServicio servicio;
