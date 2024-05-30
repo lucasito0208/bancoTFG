@@ -6,10 +6,7 @@ import com.bank_management.lucas_backend.modelo.dto.CuentaDto;
 
 public interface CuentaServicio {
 
-    CuentaDto crearCuenta();
-
     List<CuentaDto> listarCuentas();
 
-    
     
 }

@@ -6,12 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bank_management.lucas_backend.controller.UsuarioController;
+import com.bank_management.lucas_backend.entity.Usuario;
 import com.bank_management.lucas_backend.modelo.dto.UsuarioDto;
 import com.bank_management.lucas_backend.service.UsuarioServicio;
 
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -26,6 +28,12 @@ public class UsuarioControllerImpl implements UsuarioController{
     @GetMapping("/listaUsuarios")
     public ResponseEntity<List<UsuarioDto>> dameListaDeUsuarios() {
         return ResponseEntity.ok().body(servicio.dameListaUsuarios());
+    }
+
+    @Override
+    @GetMapping("{id}")
+    public ResponseEntity<Usuario> dameUsuarioNormal(@PathVariable("id") Long id) {
+        return ResponseEntity.ok().body(servicio.dameUsuarioN(id));
     }
     
 }

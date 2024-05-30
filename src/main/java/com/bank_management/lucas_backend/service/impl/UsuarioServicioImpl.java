@@ -1,13 +1,12 @@
 package com.bank_management.lucas_backend.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.bank_management.lucas_backend.repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bank_management.lucas_backend.entity.Usuario;
@@ -19,21 +18,22 @@ import com.bank_management.lucas_backend.service.UsuarioServicio;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UsuarioServicioImpl implements UsuarioServicio {
 
-    @Autowired
-    private UsuarioMapper mapper;
+    private final UsuarioMapper mapper;
 
-    @Autowired
-    private UsuarioRepository repositorio;
+    private final UsuarioRepository repositorio;
 
     @Override
     @Transactional
     public List<UsuarioDto> dameListaUsuarios() {
 
-        return mapper.toListDto(repositorio.findAll());
+        return repositorio
+        .findAll()
+        .stream()
+        .map(mapper::toDto)
+        .collect(Collectors.toList());
         
     }
 
@@ -49,5 +49,13 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         return mapper.toDto(usuario);
         
     }
+
+    @Override
+    @Transactional
+    public Usuario dameUsuarioN(Long id) {
+        return repositorio.findById(id).orElseThrow();
+    }
+
+    
     
 }

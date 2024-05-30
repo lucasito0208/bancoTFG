@@ -1,7 +1,5 @@
 package com.bank_management.lucas_backend.mapper.impl;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -41,13 +39,6 @@ public class UsuarioMapperImpl implements UsuarioMapper {
                 .password(passwordEncoder.encode(usuarioDto.getPassword()))
                 .build();
     
-    }
-
-    @Override
-    public List<UsuarioDto> toListDto(List<Usuario> listaUsuarios) {
-
-        return listaUsuarios.stream().map(this::toDto).collect(Collectors.toList());
-        
     }
     
 }
