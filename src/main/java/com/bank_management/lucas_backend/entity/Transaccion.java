@@ -27,7 +27,7 @@ public class Transaccion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTransaccion;
+    private Long idDeposito;
 
     @Enumerated(EnumType.STRING)
     private TipoTransaccion tipo;
@@ -42,7 +42,7 @@ public class Transaccion {
     private Date fecha;
 
     @ManyToOne
-    @JoinColumn(name = "account_id", referencedColumnName = "id")
-    private Cuenta cuenta;
+    @JoinColumn(name = "id_cuenta_ahorros")
+    private CuentaAhorros cuentaAhorros;
     
 }

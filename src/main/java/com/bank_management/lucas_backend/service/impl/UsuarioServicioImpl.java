@@ -41,7 +41,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     public UsuarioDto dameUsuarioPorId(Long id) {
 
         //Primero busco el usuario existente en la BD
-        Usuario usuario = repositorio.encontrarUsuarioPorId(id)
+        Usuario usuario = repositorio.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("usuario con id:  " + id + " no encontrado"));
 
         //Luego devuelto el usuario mapeado a dto

@@ -7,14 +7,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "usuario")
 public class Usuario {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,5 +31,14 @@ public class Usuario {
     private String email;
 
     private Rol rol;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Destinatario> listaDestinatarios;
+
+    @OneToOne
+    private CuentaTarjeta cuentaTarjeta;
+
+    @OneToOne
+    private CuentaAhorros cuentaAhorros;
 
 }

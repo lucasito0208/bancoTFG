@@ -1,27 +1,27 @@
 package com.bank_management.lucas_backend.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Cuenta {
+@Table(name = "cuenta_tarjeta")
+public class CuentaTarjeta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idTarjeta;
 
     @Column(unique = true, nullable = false)
     private String numTarjeta;
@@ -32,8 +32,9 @@ public class Cuenta {
     @Column(nullable = false)
     private Double saldo;
 
-    @ManyToOne
-    @JoinColumn(name = "idUsuario", referencedColumnName = "id")
-    private Usuario usuario;
+    @OneToMany(mappedBy = "cuentaTarjeta", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Compras> listaCompras;
+
     
 }

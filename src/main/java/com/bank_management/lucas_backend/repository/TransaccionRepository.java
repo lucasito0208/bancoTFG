@@ -8,8 +8,4 @@ import com.bank_management.lucas_backend.entity.Usuario;
 
 public interface TransaccionRepository extends JpaRepository<Transaccion, Long> {
 
-    Optional<Usuario> encontrarPorEmail(String email);
-
-    
-    
 }

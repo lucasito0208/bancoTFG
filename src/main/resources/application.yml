@@ -1,6 +1,6 @@
 #spring.datasource.url=jdbc:postgresql://dpg-cjhshp5mrchc73asugh0-a.frankfurt-postgres.render.com/bankms
 #spring.datasource.username=bankms_user
-#spring.datasource.password=HL3l7cd9fmAVsPYhUzO9hq0jUjxuOg7R
+#spring.datasource.password=HL3l7cd9fmAVsPYhUzO9hq0jUjxuOg7R  spring.mvc.pathmatch.matching-strategy=ant_path_matcher
 
 server:
     tomcat:
@@ -8,6 +8,9 @@ server:
             enabled: true
 
 spring:
+    mvc:
+        path-match:
+            matching-strategy: ant_path_matcher
     application:
         name: bank-management-system
     port: 8002
@@ -41,3 +44,10 @@ spring:
         schemas: public  
         out-of-order: true
         validate-on-migrate: true
+
+logging:
+    level:
+        org:
+            springframework: DEBUG
+        com:
+            bank_management: DEBUG
