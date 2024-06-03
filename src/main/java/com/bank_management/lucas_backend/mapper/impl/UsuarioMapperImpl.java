@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UsuarioMapperImpl implements UsuarioMapper {
 
-    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder codificador;
 
     @Override
     public UsuarioDto toDto(Usuario usuario) {
@@ -38,7 +38,7 @@ public class UsuarioMapperImpl implements UsuarioMapper {
                 .rol(Rol.USUARIO)
                 .email(usuarioDto.getEmail())
                 .contacto(usuarioDto.getContacto())
-                .password(passwordEncoder.encode(usuarioDto.getPassword()))
+                .password(codificador.encode(usuarioDto.getPassword()))
                 .build();
     
     }

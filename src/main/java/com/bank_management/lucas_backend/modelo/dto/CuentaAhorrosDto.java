@@ -6,16 +6,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
+
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@ApiModel(value="CuentaDTO", description = "Objeto de transferencia de datos: Cuenta")
-public class CuentaDto {
+@ApiModel(value="CuentaAhorrosDTO", description = "Objeto de transferencia de datos: CuentaAhorros")
+public class CuentaAhorrosDto {
 
-    private String numTarjeta;
+    private int numCuenta;
 
-    private String cvv;
-
-    private Double saldo;
+    private BigDecimal balance;
 }

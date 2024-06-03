@@ -20,5 +20,7 @@ public class UsuarioDto {
     private String contacto;
 
     private String password;
+
+    private boolean disponible = true;
     
 }

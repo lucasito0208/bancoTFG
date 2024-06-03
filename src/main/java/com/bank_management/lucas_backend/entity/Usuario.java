@@ -32,6 +32,8 @@ public class Usuario {
 
     private Rol rol;
 
+    private boolean disponible = true;
+
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Destinatario> listaDestinatarios;
 
