@@ -3,7 +3,6 @@ body {
 }
 
 html {
-    background: url("/images/bg.png") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -129,8 +128,6 @@ img {
     margin: 40px 183px 0;
 }
 
-/*	Making the form responsive. Remove this media query
-    if you don't need the form to work on mobile devices. */
 @media ( max-width: 600px) {
     .form-basic {
         padding: 30px;
@@ -181,7 +178,7 @@ img {
     padding: 40px 40px;
 }
 
-.responstable {
+.responseTable {
     margin: 1em 0;
     width: 100%;
     overflow: hidden;
@@ -191,15 +188,15 @@ img {
     border: 1px solid #167F92;
 }
 
-.responstable tr {
+.responseTable tr {
     border: 1px solid #D9E4E6;
 }
 
-.responstable tr:nth-child(odd) {
+.responseTable tr:nth-child(odd) {
     background-color: #EAF3F3;
 }
 
-.responstable th {
+.responseTable th {
     display: none;
     border: 1px solid #FFF;
     background-color: #167F92;
@@ -207,58 +204,58 @@ img {
     padding: 1em;
 }
 
-.responstable th:first-child {
+.responseTable th:first-child {
     display: table-cell;
     text-align: center;
 }
 
-.responstable th:nth-child(2) {
+.responseTable th:nth-child(2) {
     display: table-cell;
 }
 
-.responstable th:nth-child(2) span {
+.responseTable th:nth-child(2) span {
     display: none;
 }
 
-.responstable th:nth-child(2):after {
+.responseTable th:nth-child(2):after {
     content: attr(data-th);
 }
 
 @media ( min-width: 480px) {
-    .responstable th:nth-child(2) span {
+    .responseTable th:nth-child(2) span {
         display: block;
     }
 
-    .responstable th:nth-child(2):after {
+    .responseTable th:nth-child(2):after {
         display: none;
     }
 }
 
-.responstable td {
+.responseTable td {
     display: block;
     word-wrap: break-word;
     max-width: 7em;
 }
 
-.responstable td:first-child {
+.responseTable td:first-child {
     display: table-cell;
     text-align: center;
     border-right: 1px solid #D9E4E6;
 }
 
 @media ( min-width: 480px) {
-    .responstable td {
+    .responseTable td {
         border: 1px solid #D9E4E6;
     }
 }
 
-.responstable th, .responstable td {
+.responseTable th, .responseTable td {
     text-align: left;
     margin: .5em 1em;
 }
 
 @media ( min-width: 480px) {
-    .responstable th, .responstable td {
+    .responseTable th, .responseTable td {
         display: table-cell;
         padding: 1em;
     }
@@ -291,7 +288,6 @@ hr {
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
-    border-color: #EEEEEE -moz-use-text-color #FFFFFF;
     border-style: solid none;
     border-width: 1px 0;
     margin: 18px 0;

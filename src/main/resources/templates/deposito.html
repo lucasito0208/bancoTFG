@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
+<head th:replace="common/header :: common-header"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<head th:replace="common/header :: navbar"/>
+<div class="container main">
+    <div class="row">
+        <div class="col-md-6">
+            <form th:action="@{/cuenta/deposito}" method="post">
+                <div class="form-group">
+                    <label for="accountType">1. ¿A qué cuenta desea depositar?</label>
+                    <select class="form-control" th:value="${tipo}" name="tipo" id="accountType"
+                            required="required">
+                        <option disabled="disabled" selected="selected"> -- seleccione la cuenta --</option>
+                        <option>Tarjeta</option>
+                        <option>Ahorros</option>
+                    </select>
+                    <br/>
+                </div>
+
+                <div class="form-group">
+                    <label>2. ¿Cuánto desea depositar? </label>
+                    <input th:value="${cantidad}" type="text" name="cantidad" id="amount" class="form-control"
+                           aria-label="Cantidad en euros"/>
+                    <span class="input-group-addon"> €</span>
+                </div>
+
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Depositar cantidad</button>
+            </form>
+
+            <div class="col-md-6">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+</body>
+</html>

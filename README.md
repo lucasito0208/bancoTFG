@@ -6,7 +6,7 @@ Spring Boot/Spring Data/Spring Security/Hibernate/MySQL/REST
 
 The project simulates online banking system. It allows to register/login, deposit/withdraw money from accounts, add/edit recipients, transfer money between accounts and recipients, view transactions, make appointments.
 
-There are two roles user and admin.
+There are two roles usuario and admin.
 
 ## Thing to run the application
 
@@ -55,7 +55,7 @@ mvn clean spring-boot:run
 The project simulates online banking system. It allows to register/login, deposit/withdraw money from accounts, add/edit recipients,
 transfer money between accounts and recipients, view transactions, make appointments.
 
-There are two roles user and admin. 
+There are two roles usuario and admin. 
 
 The admin has there own frontend implemented in Angular2, which communicates with backend through REST services.
 

@@ -19,18 +19,18 @@
 
     $.transferDisplay = function () {
         $("#transferFrom").change(function () {
-            if ($("#transferFrom").val() == 'Primary') {
-                $('#transferTo').val('Savings');
-            } else if ($("#transferFrom").val() == 'Savings') {
-                $('#transferTo').val('Primary');
+            if ($("#transferFrom").val() === 'Tarjeta') {
+                $('#transferTo').val('Ahorros');
+            } else if ($("#transferFrom").val() === 'Ahorros') {
+                $('#transferTo').val('Tarjeta');
             }
         });
 
         $("#transferTo").change(function () {
-            if ($("#transferTo").val() == 'Primary') {
-                $('#transferFrom').val('Savings');
-            } else if ($("#transferTo").val() == 'Savings') {
-                $('#transferFrom').val('Primary');
+            if ($("#transferTo").val() === 'Tarjeta') {
+                $('#transferFrom').val('Ahorros');
+            } else if ($("#transferTo").val() === 'Ahorros') {
+                $('#transferFrom').val('Tarjeta');
             }
         });
     };
@@ -41,21 +41,21 @@
 $(document).ready(function () {
     var confirm = function () {
         bootbox.confirm({
-            title: "Appointment Confirmation",
-            message: "Do you really want to schedule this appointment?",
+            title: "Confirmar cita",
+            message: "Está seguro de concretar esta cita?",
             buttons: {
                 cancel: {
-                    label: '<i class="fa fa-times"></i> Cancel'
+                    label: '<i class="fa fa-times"></i> Cancelar'
                 },
                 confirm: {
-                    label: '<i class="fa fa-check"></i> Confirm'
+                    label: '<i class="fa fa-check"></i> Confirmar'
                 }
             },
             callback: function (result) {
-                if (result == true) {
+                if (result === true) {
                     $('#appointmentForm').submit();
                 } else {
-                    console.log("Scheduling cancelled.");
+                    console.log("Cita cancelada");
                 }
             }
         });
@@ -68,15 +68,14 @@ $(document).ready(function () {
 
     $.transferDisplay();
 
-    $(".form_datetime").datetimepicker({
-        format: "yyyy-mm-dd hh:mm",
+    $('.form_datetime').datetimepicker({
+        format: 'YYYY-MM-DD HH:mm',
         autoclose: true,
         todayBtn: true,
-        startDate: "2013-02-14 10:00",
-        minuteStep: 10
+        startDate: new Date()
     });
 
-    $('#submitAppointment').click(function () {
+    $('#concretarCita').click(function () {
         confirm();
     });
 

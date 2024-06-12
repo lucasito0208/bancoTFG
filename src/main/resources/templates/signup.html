@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
-<head th:replace="~{common/header :: common-header}"/>
+<head>
+    <title>Signup</title>
+    <th:block th:replace="~{common/header :: head}"></th:block>
+</head>
 <body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-<!--<head th:replace="common/header :: navbar" />-->
+
 <div class="container">
     <div class="row main">
         <div class="panel-heading">
             <div class="panel-title text-center">
-                <h1 class="title">Sign Up</h1>
+                <h1 class="title">Registro</h1>
                 <hr/>
             </div>
         </div>
@@ -15,60 +18,60 @@
             <form class="form-horizontal" method="post" th:action="@{/signup}">
 
                 <div class="form-group">
-                    <label for="firstName" class="cols-sm-2 control-label">First Name</label>
+                    <label for="firstName" class="cols-sm-2 control-label">Nombre</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" th:value="${user.firstName}" id="firstName"
-                                   name="firstName" roleId="firstname" placeholder="Enter your first name"
+                            <span class="input-group-addon"><i class="fa fa-usuario fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${usuario.nombre}" id="firstName"
+                                   name="nombre" roleId="firstname" placeholder="Introduzca su nombre"
                                    required="required"/>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="lastName" class="cols-sm-2 control-label">Last Name</label>
+                    <label for="lastName" class="cols-sm-2 control-label">Apellidos</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" th:value="${user.lastName}" id="lastName"
-                                   name="lastName" roleId="lastName" placeholder="Enter your last name"
+                            <span class="input-group-addon"><i class="fa fa-usuario fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${usuario.apellidos}" id="lastName"
+                                   name="apellidos" roleId="lastName" placeholder="Introduzca sus apellidos"
                                    required="required"/>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="phone" class="cols-sm-2 control-label">Phone</label>
+                    <label for="phone" class="cols-sm-2 control-label">Contacto</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" th:value="${user.phone}" id="phone" name="phone"
-                                   roleId="phone" placeholder="xxx-xxx-xxxx" required="required"/>
+                            <input type="text" class="form-control" th:value="${usuario.contacto}" id="phone" name="contacto"
+                                   roleId="phone" placeholder="xxx-xxx-xxx" required="required"/>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="email" class="cols-sm-2 control-label">Your Email</label><span
-                        class="bg-danger pull-right" th:if="${emailExists}">Email already exists</span>
+                    <label for="email" class="cols-sm-2 control-label">Email</label><span
+                        class="bg-danger pull-right" th:if="${emailExists}">Email existente</span>
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" th:value="${user.email}" id="email" name="email"
-                                   roleId="email" placeholder="Enter your Email" required="required"/>
+                            <input type="text" class="form-control" th:value="${usuario.email}" id="email" name="email"
+                                   roleId="email" placeholder="Dirección de correo electrónico" required="required"/>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="username" class="cols-sm-2 control-label">Username</label><span
-                        class="bg-danger pull-right" th:if="${usernameExists}">Username already exists</span>
+                    <label for="username" class="cols-sm-2 control-label">Usuario</label><span
+                        class="bg-danger pull-right" th:if="${usernameExists}">Usuario existente</span>
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" th:value="${user.username}" id="username"
-                                   name="username" roleId="username" placeholder="Enter your Username"
+                            <input type="text" class="form-control" th:value="${usuario.username}" id="username"
+                                   name="nombreUsuario" roleId="username" placeholder="Nombre de usuario"
                                    required="required"/>
                         </div>
                     </div>
@@ -79,36 +82,26 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <input type="password" class="form-control" th:value="${user.password}" id="password"
-                                   name="password" roleId="password" placeholder="Enter your Password"
+                            <input type="password" class="form-control" th:value="${usuario.password}" id="password"
+                                   name="password" roleId="password" placeholder="Contraseña"
                                    required="required"/>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input id="showPassword" type="checkbox"/>Show Password
+                                <input id="showPassword" type="checkbox"/>Mostrar contraseña
                             </label>
                         </div>
                     </div>
                 </div>
 
-                <!--<div class="form-group">-->
-                <!--<label for="confirm" class="cols-sm-2 control-label">Confirm Secret</label>-->
-                <!--<div class="cols-sm-10">-->
-                <!--<div class="input-group">-->
-                <!--<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>-->
-                <!--<input type="secret" class="form-control" name="confirm" roleId="confirm"  placeholder="Confirm your Secret" required="required"/>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-
                 <div class="form-group ">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Sign up!</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Aceptar</button>
                 </div>
 
                 <hr/>
 
                 <div class="form-group ">
-                    <a class="btn btn-info btn-lg btn-block login-button" th:href="@{/}">Cancel</a>
+                    <a class="btn btn-info btn-lg btn-block login-button" th:href="@{/}">Cancelar</a>
                 </div>
             </form>
         </div>
@@ -116,7 +109,7 @@
 </div>
 
 
-<div th:replace="common/header :: body-bottom-scripts"/>
+<div th:replace="~{common/header :: body-bottom-scripts}"></div>
 
 </body>
 </html>

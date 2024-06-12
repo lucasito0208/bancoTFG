@@ -29,12 +29,11 @@
     <!--<link href="css/scrolling-nav.css" rel="stylesheet" />-->
     <link href="/css/main.css" rel="stylesheet"/>
 </head>
-<body>
-<!-- Navigation -->
-<div th:fragment="navbar">
-    <img alt="banner" class="img-responsive" src="/images/banner2.png"/>
 
-    <nav class="navbar navbar-default " role="navigation">
+<body>
+<div th:fragment="navbar">
+
+    <nav class="navbar navbar-default " rol="navigation">
         <div class="container">
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -46,55 +45,52 @@
                 <a class="navbar-brand page-scroll" th:href="@{/userFront}">Home</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
+
             <div class="collapse  navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+
                     <li class="hidden">
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Accounts <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" rol="button" aria-haspopup="true"
+                           aria-expanded="false">Cuenta <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a th:href="@{/account/primaryAccount}">Primary</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a th:href="@{/account/savingsAccount}">Savings</a></li>
+                            <li><a th:href="@{/cuenta/tarjeta}">Tarjeta</a></li>
+                            <li rol="separator" class="divider"></li>
+                            <li><a th:href="@{/cuenta/ahorros}">Ahorros</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Transfer <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" rol="button" aria-haspopup="true"
+                           aria-expanded="false">Operaciones <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a th:href="@{/transfer/betweenAccounts}">Between Accounts</a></li>
-                            <li><a th:href="@{/transfer/toSomeoneElse}">To Someone Else</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a th:href="@{/transfer/recipient}">Add/Edit Recipient</a></li>
+                            <li><a th:href="@{/transfer/cuentas}">Entre cuentas</a></li>
+                            <li><a th:href="@{/transfer/otraCuenta}">A otra cuenta</a></li>
+                            <li><a th:href="@{/transfer/destino}">Editar destinatario</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Appointment <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" rol="button" aria-haspopup="true"
+                           aria-expanded="false">Cita <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a th:href="@{/appointment/create}">Schedule an Appointment</a></li>
+                            <li><a th:href="@{/cita/crear}">Concretar cita</a></li>
                         </ul>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Me <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" rol="button" aria-haspopup="true"
+                           aria-expanded="false">Usuario <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a th:href="@{/user/profile}">Profile</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a th:href="@{/logout}">Logout</a></li>
+                            <li><a th:href="@{/usuario/profile}">Perfil</a></li>
+                            <li rol="separator" class="divider"></li>
+                            <li><a th:href="@{/logout}">Cerrar sesión</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
     </nav>
 </div>
 
