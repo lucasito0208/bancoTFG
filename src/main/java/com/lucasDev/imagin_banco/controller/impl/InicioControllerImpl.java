@@ -3,8 +3,10 @@ package com.lucasDev.imagin_banco.controller.impl;
 import com.lucasDev.imagin_banco.entity.Tarjeta;
 import com.lucasDev.imagin_banco.entity.Ahorros;
 import com.lucasDev.imagin_banco.entity.Usuario;
+import com.lucasDev.imagin_banco.mapper.UsuarioMapper;
 import com.lucasDev.imagin_banco.repository.RolRepository;
 import com.lucasDev.imagin_banco.security.RolesUsuarios;
+import com.lucasDev.imagin_banco.service.AuthService;
 import com.lucasDev.imagin_banco.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -24,7 +26,13 @@ public class InicioControllerImpl {
 
     private final UsuarioService usuarioService;
 
+    private final UsuarioMapper usuarioMapper;
+
+    private final AuthService authService;
+
     private final RolRepository rolRepository;
+
+
 
     @GetMapping("/")
     public String home() {
@@ -37,7 +45,7 @@ public class InicioControllerImpl {
     }
 
     @GetMapping("/signup")
-    public String signup(Model model) {
+    public String registro(Model model) {
         Usuario usuario = new Usuario();
 
         model.addAttribute("usuario", usuario);
@@ -46,24 +54,19 @@ public class InicioControllerImpl {
     }
 
     @PostMapping("/signup")
-    public String signupPost(@ModelAttribute("usuario") Usuario usuario, Model model) {
+    public String registroPost(@ModelAttribute("usuario") Usuario usuario, Model model) {
 
-        if (usuarioService.checkUserExists(usuario.getUsername(), usuario.getEmail())) {
+        if (authService.datosEnUso(usuario.getEmail(), usuario.getUsername(), usuario.getPassword())) {
 
-            if (usuarioService.checkEmailExists(usuario.getEmail())) {
-                model.addAttribute("emailExists", true);
-            }
-
-            if (usuarioService.checkUsernameExists(usuario.getUsername())) {
-                model.addAttribute("usernameExists", true);
-            }
+            model.addAttribute("emailExists", true);
+            model.addAttribute("usernameExists", true);
 
             return "signup";
         } else {
             Set<RolesUsuarios> rolesUsuarios = new HashSet<>();
             rolesUsuarios.add(new RolesUsuarios(usuario, rolRepository.findByNombre("USUARIO")));
 
-            usuarioService.createUser(usuario, rolesUsuarios);
+            authService.registro(usuarioMapper.toModelo(usuario));
 
             return "redirect:/";
         }

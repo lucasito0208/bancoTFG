@@ -1,7 +1,12 @@
 package com.lucasDev.imagin_banco.controller.impl;
 
+import com.lucasDev.imagin_banco.controller.CitaController;
 import com.lucasDev.imagin_banco.entity.Cita;
 import com.lucasDev.imagin_banco.entity.Usuario;
+import com.lucasDev.imagin_banco.mapper.CitaMapper;
+import com.lucasDev.imagin_banco.mapper.UsuarioMapper;
+import com.lucasDev.imagin_banco.model.dtos.CitaDto;
+import com.lucasDev.imagin_banco.model.dtos.UsuarioDto;
 import com.lucasDev.imagin_banco.service.CitaService;
 import com.lucasDev.imagin_banco.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
@@ -23,14 +28,16 @@ import java.util.Date;
 @Controller
 @RequestMapping("/cita")
 @RequiredArgsConstructor
-public class CitaControllerImpl {
+public class CitaControllerImpl implements CitaController {
 
     private final CitaService citaService;
-
+    private final CitaMapper citaMapper;
+    private final UsuarioMapper usuarioMapper;
     private final UsuarioService usuarioService;
 
+
     @GetMapping(value = "/crear")
-    public String createAppointment(Model model) {
+    public String crearCita(Model model) {
         Cita cita = new Cita();
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
@@ -43,17 +50,18 @@ public class CitaControllerImpl {
         return "cita";
     }
 
+
     @PostMapping(value = "/crear")
-    public String createAppointmentPost(@ModelAttribute("cita") Cita cita, @ModelAttribute("fecha") String fecha, Model model, Principal principal) throws ParseException {
+    public String crearCitaPost(@ModelAttribute("cita") CitaDto cita, @ModelAttribute("fecha") String fecha, Principal principal) throws ParseException {
 
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        Date d1 = format1.parse(fecha);
-        cita.setFecha(d1);
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        Date fechaActual = formato.parse(fecha);
+        cita.setFecha(fechaActual);
 
-        Usuario usuario = usuarioService.findByUsername(principal.getName());
+        UsuarioDto usuario = usuarioMapper.toDto(usuarioService.findByUsername(principal.getName()));
         cita.setUsuario(usuario);
 
-        citaService.createAppointment(cita);
+        citaService.crearCita(citaMapper.toCitaEntity(cita));
 
         return "redirect:/userFront";
     }

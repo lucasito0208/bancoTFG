@@ -29,44 +29,32 @@ public class Usuario implements UserDetails {
     private Long id;
     @Column(name="nombre_usuario", nullable = false, unique = true)
     private String nombreUsuario;
-
     @Column(name = "password", nullable = false)
     private String password;
-
     private String nombre;
-
     private String apellidos;
-
     @Column(name = "email", nullable = false, unique = true)
     private String email;
     private String contacto;
     private boolean disponible = true;
-
     @OneToOne
     private Tarjeta tarjeta;
-
     @OneToOne
     private Ahorros ahorros;
-
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Cita> citas;
-
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Destinatario> destinatarioList;
-
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<RolesUsuarios> rolesUsuarios = new HashSet<>();
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<>();
         rolesUsuarios.forEach(ur -> authorities.add(new Authority(ur.getRol().getNombre())));
         return authorities;
     }
-
     @Override
     public String getUsername() {
         return nombreUsuario;

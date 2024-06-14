@@ -1,6 +1,10 @@
 package com.lucasDev.imagin_banco.service.UserServiceImpl;
 
 import com.lucasDev.imagin_banco.entity.*;
+import com.lucasDev.imagin_banco.mapper.AhorrosMapper;
+import com.lucasDev.imagin_banco.mapper.TarjetaMapper;
+import com.lucasDev.imagin_banco.model.dtos.AhorrosDto;
+import com.lucasDev.imagin_banco.model.dtos.TarjetaDto;
 import com.lucasDev.imagin_banco.repository.TarjetaRepository;
 import com.lucasDev.imagin_banco.repository.AhorrosRepository;
 import com.lucasDev.imagin_banco.repository.UsuarioRepository;
@@ -23,10 +27,11 @@ public class CuentaServiceImpl implements CuentaService {
 
     private final TarjetaRepository tarjetaRepository;
 
+    private final TarjetaMapper tarjetaMapper;
     private final AhorrosRepository ahorrosRepository;
 
+    private final AhorrosMapper ahorrosMapper;
     private final UsuarioRepository usuarioRepository;
-
     private final OpService opService;
 
     private final AtomicInteger siguienteNumCuenta = new AtomicInteger(41296801);
@@ -42,6 +47,11 @@ public class CuentaServiceImpl implements CuentaService {
         return tarjetaRepository.findByNumCuenta(tarjeta.getNumCuenta());
     }
 
+    @Override
+    public TarjetaDto crearCuentaTarjeta() {
+        return null;
+    }
+
     public Ahorros createSavingsAccount() {
         Ahorros ahorros = Ahorros.builder()
                 .numCuenta(accountGen())
@@ -51,6 +61,11 @@ public class CuentaServiceImpl implements CuentaService {
         ahorrosRepository.save(ahorros);
 
         return ahorrosRepository.findByNumCuenta(ahorros.getNumCuenta());
+    }
+
+    @Override
+    public AhorrosDto crearCuentaAhorros() {
+        return null;
     }
 
     public void deposito(String tipo, double cantidad, Principal principal) {

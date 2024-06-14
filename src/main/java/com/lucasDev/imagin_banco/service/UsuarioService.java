@@ -1,5 +1,6 @@
 package com.lucasDev.imagin_banco.service;
 
+import com.lucasDev.imagin_banco.model.dtos.UsuarioDto;
 import com.lucasDev.imagin_banco.entity.Usuario;
 import com.lucasDev.imagin_banco.security.RolesUsuarios;
 import org.springframework.stereotype.Service;

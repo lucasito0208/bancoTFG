@@ -1,11 +1,13 @@
 package com.lucasDev.imagin_banco.service.UserServiceImpl;
 
+import com.lucasDev.imagin_banco.model.dtos.UsuarioDto;
 import com.lucasDev.imagin_banco.entity.Usuario;
 import com.lucasDev.imagin_banco.repository.RolRepository;
 import com.lucasDev.imagin_banco.repository.UsuarioRepository;
 import com.lucasDev.imagin_banco.security.RolesUsuarios;
 import com.lucasDev.imagin_banco.service.CuentaService;
 import com.lucasDev.imagin_banco.service.UsuarioService;
+import jakarta.persistence.EntityExistsException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -63,8 +65,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         return localUsuario;
     }
 
+
     public boolean checkUserExists(String username, String email) {
-        return checkUsernameExists(username) || checkEmailExists(username);
+        return checkUsernameExists(username) || checkEmailExists(email);
     }
 
     public boolean checkUsernameExists(String username) {

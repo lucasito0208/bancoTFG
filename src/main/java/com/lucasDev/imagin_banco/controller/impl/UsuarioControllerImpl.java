@@ -38,17 +38,6 @@ public class UsuarioControllerImpl implements UsuarioController {
 
         Usuario usuarioDb = usuarioService.findByUsername(usuario.getUsername());
 
-        /* Actualizar los campos utilizando el builder
-        Usuario usuarioNuevo = Usuario.builder()
-                .nombreUsuario(usuario.getUsername())
-                .nombre(usuario.getNombre())
-                .apellidos(usuario.getApellidos())
-                .email(usuario.getEmail())
-                .contacto(usuario.getContacto())
-                .build();
-
-         */
-
         usuarioDb.setNombreUsuario(usuario.getUsername());
         usuarioDb.setNombre(usuario.getNombre());
         usuarioDb.setApellidos(usuario.getApellidos());
